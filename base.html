@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Анализ рынка авто</title>
+
+  <!-- ВАЖНО: так Flask правильно отдаёт статику -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=999">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="{{ url_for('index') }}">🚗 Car Market</a>
+      <nav class="nav">
+        <a class="nav__link" href="{{ url_for('index') }}">Главная</a>
+        <a class="nav__link" href="{{ url_for('favorites') }}">Избранное</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

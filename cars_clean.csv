@@ -1,0 +1,143 @@
+brand,model,year,body_type,horsepower,price_usd,transmission,fuel_type,drive_type
+Toyota,Camry,2024,Sedan,203,29500,Automatic,Gasoline,Front-wheel
+Toyota,RAV4,2023,SUV,203,31500,Automatic,Hybrid,All-wheel
+Toyota,Land Cruiser,2022,SUV,326,72000,Automatic,Gasoline,All-wheel
+Toyota,Corolla,2021,Sedan,169,19500,Automatic,Gasoline,Front-wheel
+Toyota,Highlander,2020,SUV,295,34500,Automatic,Gasoline,All-wheel
+Toyota,Prius,2019,Hatchback,121,18500,Automatic,Hybrid,Front-wheel
+Toyota,Avalon,2018,Sedan,301,23500,Automatic,Gasoline,Front-wheel
+Toyota,4Runner,2017,SUV,270,28500,Automatic,Gasoline,All-wheel
+BMW,3 Series,2024,Sedan,255,45200,Automatic,Gasoline,Rear-wheel
+BMW,X5,2023,SUV,335,62000,Automatic,Diesel,All-wheel
+BMW,i4,2022,Sedan,340,49000,Automatic,Electric,Rear-wheel
+BMW,5 Series,2021,Sedan,248,38500,Automatic,Gasoline,Rear-wheel
+BMW,X3,2020,SUV,248,35500,Automatic,Gasoline,All-wheel
+BMW,7 Series,2019,Sedan,335,48500,Automatic,Gasoline,Rear-wheel
+BMW,X1,2018,SUV,228,26500,Automatic,Gasoline,All-wheel
+Mercedes-Benz,C-Class,2024,Sedan,255,46300,Automatic,Gasoline,Rear-wheel
+Mercedes-Benz,GLE,2023,SUV,362,64200,Automatic,Diesel,All-wheel
+Mercedes-Benz,EQS,2022,Sedan,355,89000,Automatic,Electric,Rear-wheel
+Mercedes-Benz,E-Class,2021,Sedan,362,48500,Automatic,Gasoline,Rear-wheel
+Mercedes-Benz,GLC,2020,SUV,255,38500,Automatic,Gasoline,All-wheel
+Mercedes-Benz,S-Class,2019,Sedan,429,68500,Automatic,Gasoline,Rear-wheel
+Mercedes-Benz,GLA,2018,SUV,208,26500,Automatic,Gasoline,All-wheel
+Audi,A4,2024,Sedan,201,42100,Automatic,Gasoline,All-wheel
+Audi,Q5,2023,SUV,261,45200,Automatic,Gasoline,All-wheel
+Audi,e-tron GT,2022,Sedan,469,85000,Automatic,Electric,All-wheel
+Audi,A6,2021,Sedan,335,48500,Automatic,Gasoline,All-wheel
+Audi,Q7,2020,SUV,329,48500,Automatic,Diesel,All-wheel
+Audi,A5,2019,Coupe,248,32500,Automatic,Gasoline,All-wheel
+Audi,Q3,2018,SUV,184,26500,Automatic,Gasoline,All-wheel
+Ford,Mustang,2024,Coupe,450,37200,Manual,Gasoline,Rear-wheel
+Ford,Explorer,2023,SUV,300,40600,Automatic,Gasoline,All-wheel
+Ford,F-150,2022,Truck,400,45600,Automatic,Gasoline,All-wheel
+Ford,Escape,2021,SUV,181,27500,Automatic,Gasoline,Front-wheel
+Ford,Fusion,2020,Sedan,181,22500,Automatic,Gasoline,Front-wheel
+Ford,Edge,2019,SUV,250,28500,Automatic,Gasoline,All-wheel
+Ford,Focus,2018,Hatchback,160,16500,Automatic,Gasoline,Front-wheel
+Honda,Civic,2024,Sedan,158,25500,Automatic,Gasoline,Front-wheel
+Honda,CR-V,2023,SUV,190,32500,CVT,Hybrid,All-wheel
+Honda,Pilot,2022,SUV,285,40800,Automatic,Gasoline,All-wheel
+Honda,Accord,2021,Sedan,192,28500,Automatic,Gasoline,Front-wheel
+Honda,HR-V,2020,SUV,141,22500,CVT,Gasoline,Front-wheel
+Honda,Odyssey,2019,Minivan,280,32500,Automatic,Gasoline,Front-wheel
+Honda,Fit,2018,Hatchback,130,16500,Automatic,Gasoline,Front-wheel
+Volkswagen,Golf,2024,Hatchback,147,23400,Manual,Gasoline,Front-wheel
+Volkswagen,Tiguan,2023,SUV,184,33200,Automatic,Gasoline,All-wheel
+Volkswagen,ID.4,2022,SUV,201,41200,Automatic,Electric,Rear-wheel
+Volkswagen,Passat,2021,Sedan,174,28500,Automatic,Gasoline,Front-wheel
+Volkswagen,Arteon,2020,Sedan,268,35500,Automatic,Gasoline,All-wheel
+Volkswagen,Touareg,2019,SUV,335,45500,Automatic,Diesel,All-wheel
+Volkswagen,Jetta,2018,Sedan,147,18500,Automatic,Gasoline,Front-wheel
+Hyundai,Sonata,2024,Sedan,191,26800,Automatic,Gasoline,Front-wheel
+Hyundai,Tucson,2023,SUV,187,32500,Automatic,Hybrid,All-wheel
+Hyundai,Ioniq 5,2022,SUV,225,42200,Automatic,Electric,Rear-wheel
+Hyundai,Elantra,2021,Sedan,147,20500,Automatic,Gasoline,Front-wheel
+Hyundai,Santa Fe,2020,SUV,235,28500,Automatic,Gasoline,All-wheel
+Hyundai,Kona,2019,SUV,147,19500,Automatic,Gasoline,Front-wheel
+Hyundai,Accent,2018,Sedan,120,14500,Automatic,Gasoline,Front-wheel
+Kia,K5,2024,Sedan,180,26700,Automatic,Gasoline,Front-wheel
+Kia,Sportage,2023,SUV,187,28600,Automatic,Hybrid,All-wheel
+Kia,EV6,2022,SUV,225,43200,Automatic,Electric,Rear-wheel
+Kia,Sorento,2021,SUV,281,35500,Automatic,Gasoline,All-wheel
+Kia,Optima,2020,Sedan,185,22500,Automatic,Gasoline,Front-wheel
+Kia,Stinger,2019,Sedan,365,38500,Automatic,Gasoline,Rear-wheel
+Kia,Rio,2018,Sedan,120,13500,Automatic,Gasoline,Front-wheel
+Nissan,Altima,2024,Sedan,188,27200,Automatic,Gasoline,Front-wheel
+Nissan,Rogue,2023,SUV,201,29500,CVT,Gasoline,All-wheel
+Nissan,Ariya,2022,SUV,238,43900,Automatic,Electric,All-wheel
+Nissan,Sentra,2021,Sedan,149,20500,Automatic,Gasoline,Front-wheel
+Nissan,Murano,2020,SUV,260,28500,CVT,Gasoline,All-wheel
+Nissan,Maxima,2019,Sedan,300,28500,Automatic,Gasoline,Front-wheel
+Nissan,Pathfinder,2018,SUV,284,26500,Automatic,Gasoline,All-wheel
+Tesla,Model 3,2024,Sedan,283,42990,Automatic,Electric,Rear-wheel
+Tesla,Model Y,2023,SUV,384,47990,Automatic,Electric,All-wheel
+Tesla,Model S,2022,Sedan,670,84990,Automatic,Electric,All-wheel
+Tesla,Model X,2021,SUV,670,79990,Automatic,Electric,All-wheel
+Tesla,Model 3,2020,Sedan,283,35990,Automatic,Electric,Rear-wheel
+Tesla,Model S,2019,Sedan,670,58990,Automatic,Electric,All-wheel
+Tesla,Model X,2018,SUV,670,54990,Automatic,Electric,All-wheel
+Renault,Duster,2024,SUV,150,22500,Manual,Gasoline,Front-wheel
+Renault,Logan,2023,Sedan,90,14500,Manual,Gasoline,Front-wheel
+Renault,Kaptur,2022,SUV,113,19500,Automatic,Gasoline,Front-wheel
+Renault,Arkana,2021,SUV,150,21500,Automatic,Gasoline,Front-wheel
+Renault,Megane,2020,Hatchback,130,18500,Manual,Gasoline,Front-wheel
+Renault,Koleos,2019,SUV,171,24500,Automatic,Gasoline,All-wheel
+Renault,Sandero,2018,Hatchback,82,11500,Manual,Gasoline,Front-wheel
+Renault,Fluence,2017,Sedan,115,12500,Manual,Gasoline,Front-wheel
+Renault,Clio,2016,Hatchback,90,10500,Manual,Gasoline,Front-wheel
+Renault,Dokker,2015,Van,115,9500,Manual,Gasoline,Front-wheel
+LADA,Vesta,2024,Sedan,106,12500,Manual,Gasoline,Front-wheel
+LADA,Granta,2023,Sedan,90,9500,Manual,Gasoline,Front-wheel
+LADA,Niva,2022,SUV,80,11500,Manual,Gasoline,All-wheel
+LADA,XRAY,2021,SUV,106,13500,Manual,Gasoline,Front-wheel
+LADA,Largus,2020,Station Wagon,106,11500,Manual,Gasoline,Front-wheel
+LADA,Vesta SW,2019,Station Wagon,106,10500,Manual,Gasoline,Front-wheel
+LADA,4x4 Urban,2018,SUV,83,9500,Manual,Gasoline,All-wheel
+LADA,Kalina,2017,Hatchback,87,8500,Manual,Gasoline,Front-wheel
+LADA,Priora,2016,Sedan,98,7500,Manual,Gasoline,Front-wheel
+LADA,Samara,2015,Hatchback,80,6500,Manual,Gasoline,Front-wheel
+Geely,Coolray,2024,SUV,177,21500,Automatic,Gasoline,Front-wheel
+Geely,Emgrand,2023,Sedan,127,18500,Automatic,Gasoline,Front-wheel
+Geely,Atlas,2022,SUV,238,23500,Automatic,Gasoline,All-wheel
+Geely,Tugella,2021,SUV,238,25500,Automatic,Gasoline,All-wheel
+Geely,Geometry C,2020,SUV,204,28500,Automatic,Electric,Front-wheel
+Geely,BoYue,2019,SUV,184,19500,Automatic,Gasoline,Front-wheel
+Geely,Emgrand GS,2018,SUV,133,16500,Automatic,Gasoline,Front-wheel
+Geely,Emgrand GL,2017,Sedan,133,14500,Automatic,Gasoline,Front-wheel
+Geely,Emgrand X7,2016,SUV,163,12500,Automatic,Gasoline,Front-wheel
+Geely,FC Vision,2015,Sedan,138,10500,Automatic,Gasoline,Front-wheel
+Li Xiang,L9,2024,SUV,449,75000,Automatic,Hybrid,All-wheel
+Li Xiang,L8,2023,SUV,449,68000,Automatic,Hybrid,All-wheel
+Li Xiang,L7,2022,SUV,449,62000,Automatic,Hybrid,All-wheel
+Li Xiang,ONE,2021,SUV,326,45000,Automatic,Hybrid,All-wheel
+Li Xiang,Li ONE,2020,SUV,326,42000,Automatic,Hybrid,All-wheel
+Li Xiang,Li 9,2019,SUV,326,38000,Automatic,Hybrid,All-wheel
+Li Xiang,Li 8,2018,SUV,272,32000,Automatic,Hybrid,All-wheel
+Li Xiang,Li 7,2017,SUV,272,28000,Automatic,Hybrid,All-wheel
+Li Xiang,Li 6,2016,SUV,272,25000,Automatic,Hybrid,All-wheel
+Li Xiang,Li 5,2015,SUV,218,22000,Automatic,Hybrid,All-wheel
+Lexus,RX,2024,SUV,295,52500,Automatic,Hybrid,All-wheel
+Lexus,ES,2023,Sedan,302,46500,Automatic,Gasoline,Front-wheel
+Lexus,NX,2022,SUV,203,42500,Automatic,Hybrid,All-wheel
+Mazda,CX-5,2024,SUV,187,32500,Automatic,Gasoline,All-wheel
+Mazda,3,2023,Sedan,186,26500,Automatic,Gasoline,Front-wheel
+Mazda,CX-9,2022,SUV,250,39500,Automatic,Gasoline,All-wheel
+Subaru,Outback,2024,SUV,182,32500,Automatic,Gasoline,All-wheel
+Subaru,Forester,2023,SUV,182,29500,Automatic,Gasoline,All-wheel
+Subaru,Impreza,2022,Sedan,152,22500,Automatic,Gasoline,All-wheel
+Jeep,Grand Cherokee,2024,SUV,293,48500,Automatic,Gasoline,All-wheel
+Jeep,Wrangler,2023,SUV,285,42500,Manual,Gasoline,All-wheel
+Jeep,Cherokee,2022,SUV,271,32500,Automatic,Gasoline,All-wheel
+Chevrolet,Silverado,2024,Truck,355,48500,Automatic,Gasoline,All-wheel
+Chevrolet,Equinox,2023,SUV,175,28500,Automatic,Gasoline,Front-wheel
+Chevrolet,Malibu,2022,Sedan,160,24500,Automatic,Gasoline,Front-wheel
+Volvo,XC60,2024,SUV,247,48500,Automatic,Gasoline,All-wheel
+Volvo,S90,2023,Sedan,316,56500,Automatic,Gasoline,All-wheel
+Volvo,XC40,2022,SUV,187,38500,Automatic,Gasoline,All-wheel
+Porsche,911,2024,Coupe,379,113200,Automatic,Gasoline,All-wheel
+Porsche,Cayenne,2023,SUV,335,79500,Automatic,Gasoline,All-wheel
+Porsche,Macan,2022,SUV,261,62500,Automatic,Gasoline,All-wheel
+Land Rover,Range Rover,2024,SUV,395,105000,Automatic,Gasoline,All-wheel
+Land Rover,Discovery,2023,SUV,355,68500,Automatic,Diesel,All-wheel
+Land Rover,Defender,2022,SUV,395,68500,Automatic,Gasoline,All-wheel

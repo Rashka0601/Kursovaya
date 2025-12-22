@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero card card--glass">
+  <div class="hero__left">
+    <h1 class="hero__title">Анализ рынка подержанных автомобилей</h1>
+    <p class="hero__text">Фильтры + поиск по тексту и подсказки результатов рядом с полем.</p>
+    <div class="chips">
+      <span class="chip">Поиск</span>
+      <span class="chip">Фильтры</span>
+      <span class="chip">Графики</span>
+      <span class="chip">Избранное</span>
+      <span class="chip">Экспорт CSV</span>
+    </div>
+  </div>
+
+  <div class="hero__right">
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat__label">Всего авто</div>
+        <div class="stat__value">{{ stats.total_cars }}</div>
+      </div>
+      <div class="stat">
+        <div class="stat__label">Средняя цена</div>
+        <div class="stat__value">{{ stats.mean_price }} $</div>
+      </div>
+      <div class="stat">
+        <div class="stat__label">Медианная цена</div>
+        <div class="stat__value">{{ stats.median_price }} $</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="grid-2">
+  <div class="card">
+    <div class="card__header">
+      <h2 class="card__title">Фильтрация и поиск</h2>
+      <p class="card__subtitle">Подсказки: введи 2+ символа (пример: “audi q5”, “electric awd”)</p>
+    </div>
+
+    <form method="get" action="{{ url_for('index') }}" class="form" id="filterForm">
+      <div class="form__grid">
+
+        <!-- ПОИСК + ЖИВЫЕ ПОДСКАЗКИ -->
+        <div class="field field--span2 search-field" id="searchField">
+          <label class="field__label">Поиск</label>
+
+          <input
+            class="input"
+            id="searchInput"
+            type="text"
+            name="q"
+            value="{{ filters.get('q','') }}"
+            placeholder="Введите текст для поиска..."
+            autocomplete="off"
+            spellcheck="false"
+          >
+
+          <!-- Окошко подсказок -->
+          <div class="suggest" id="searchSuggest" hidden>
+            <div class="suggest__head">
+              <span>Результаты</span>
+              <button type="button" class="suggest__close" id="suggestClose">×</button>
+            </div>
+            <div class="suggest__list" id="suggestList"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label">Марка</label>
+          <select class="input" name="brand" id="brandSelect">
+            <option value="">Любая</option>
+            {% for b in brands %}
+            <option value="{{ b }}" {% if filters.get('brand','') == b %}selected{% endif %}>{{ b }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label">Модель</label>
+          <select class="input" name="model" id="modelSelect">
+            <option value="">Любая</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label">Тип кузова</label>
+          <select class="input" name="body_type">
+            <option value="">Любой</option>
+            {% for bt in body_types %}
+            <option value="{{ bt }}" {% if filters.get('body_type','') == bt %}selected{% endif %}>{{ bt }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label">Топливо</label>
+          <select class="input" name="fuel_type">
+            <option value="">Любое</option>
+            {% for f in fuel_types %}
+            <option value="{{ f }}" {% if filters.get('fuel_type','') == f %}selected{% endif %}>{{ f }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label">Привод</label>
+          <select class="input" name="drive_type">
+            <option value="">Любой</option>
+            {% for d in drive_types %}
+            <option value="{{ d }}" {% if filters.get('drive_type','') == d %}selected{% endif %}>{{ d }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label">Трансмиссия</label>
+          <select class="input" name="transmission">
+            <option value="">Любая</option>
+            {% for t in transmissions %}
+            <option value="{{ t }}" {% if filters.get('transmission','') == t %}selected{% endif %}>{{ t }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label">Год от</label>
+          <input class="input" type="number" name="year_min" value="{{ filters.get('year_min','') }}">
+        </div>
+
+        <div class="field">
+          <label class="field__label">Год до</label>
+          <input class="input" type="number" name="year_max" value="{{ filters.get('year_max','') }}">
+        </div>
+
+        <div class="field">
+          <label class="field__label">Мощность от</label>
+          <input class="input" type="number" name="hp_min" value="{{ filters.get('hp_min','') }}">
+        </div>
+
+        <div class="field">
+          <label class="field__label">Мощность до</label>
+          <input class="input" type="number" name="hp_max" value="{{ filters.get('hp_max','') }}">
+        </div>
+
+        <div class="field">
+          <label class="field__label">Цена от ($)</label>
+          <input class="input" type="number" name="price_min" value="{{ filters.get('price_min','') }}">
+        </div>
+
+        <div class="field">
+          <label class="field__label">Цена до ($)</label>
+          <input class="input" type="number" name="price_max" value="{{ filters.get('price_max','') }}">
+        </div>
+      </div>
+
+      <div class="form__actions">
+        <button class="btn btn-primary" type="submit">Применить</button>
+        <button class="btn btn-ghost" type="button" id="resetBtn">Сбросить</button>
+      </div>
+    </form>
+
+    <div class="divider"></div>
+
+    <h3 class="mini-title">Популярность марок</h3>
+    <div class="brand-list">
+      {% for brand, count in stats.popular_brands.items() %}
+      <div class="brand-item">
+        <span class="brand-item__name">{{ brand }}</span>
+        <span class="badge badge--soft">{{ count }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__header">
+      <h2 class="card__title">Графики</h2>
+      <p class="card__subtitle">Графики отдаются как PNG (без “image errors”)</p>
+    </div>
+
+    <div class="charts">
+      <div class="chart-card">
+        <div class="chart-card__top">
+          <div class="chart-card__title">Средняя цена по маркам</div>
+          <a class="link" target="_blank" href="{{ url_for('plot', name='brand_price') }}">Открыть</a>
+        </div>
+        <img class="chart-img" src="{{ url_for('plot', name='brand_price') }}" alt="brand_price">
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card__top">
+          <div class="chart-card__title">Цена от года выпуска</div>
+          <a class="link" target="_blank" href="{{ url_for('plot', name='price_year') }}">Открыть</a>
+        </div>
+        <img class="chart-img" src="{{ url_for('plot', name='price_year') }}" alt="price_year">
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card__top">
+          <div class="chart-card__title">Цена от мощности</div>
+          <a class="link" target="_blank" href="{{ url_for('plot', name='price_hp') }}">Открыть</a>
+        </div>
+        <img class="chart-img" src="{{ url_for('plot', name='price_hp') }}" alt="price_hp">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="card__header">
+    <h2 class="card__title">Результаты</h2>
+    <p class="card__subtitle">Найдено: <b>{{ cars|length }}</b></p>
+  </div>
+
+  <div class="table-actions">
+    <a class="btn btn-secondary" id="exportLink" href="#">Экспорт CSV</a>
+  </div>
+
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Марка</th><th>Модель</th><th>Год</th><th>Кузов</th>
+          <th>Мощность</th><th>Топливо</th><th>Привод</th><th>КПП</th><th>Цена, $</th>
+          <th class="th-actions">Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for car in cars %}
+        <tr class="row-anim">
+          <td><span class="pill">{{ car.brand }}</span></td>
+          <td>{{ car.model }}</td>
+          <td>{{ car.year }}</td>
+          <td>{{ car.body_type }}</td>
+          <td>{{ car.horsepower }}</td>
+          <td>{{ car.fuel_type }}</td>
+          <td>{{ car.drive_type }}</td>
+          <td>{{ car.transmission }}</td>
+          <td><b>{{ car.price_usd }}</b></td>
+          <td class="actions">
+            <a class="icon-btn {% if car.id in favorites %}icon-btn--active{% endif %}"
+               title="В избранное"
+               href="{{ url_for('toggle_favorite', car_id=car.id, next=request.full_path) }}">
+              {% if car.id in favorites %}★{% else %}☆{% endif %}
+            </a>
+
+            <a class="btn btn-sm btn-outline" href="{{ url_for('recommend', car_id=car.id) }}">Похожие</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% if cars|length == 0 %}
+  <div class="empty">
+    <div class="empty__icon">🔎</div>
+    <div class="empty__title">Ничего не найдено</div>
+    <div class="empty__text">Попробуй изменить фильтры или запрос поиска.</div>
+  </div>
+  {% endif %}
+</section>
+
+<!-- Маршруты -->
+<div id="routes"
+     data-index-url="{{ url_for('index') }}"
+     data-export-url="{{ url_for('export') }}"
+     data-api-search-url=""
+     hidden></div>
+
+<!-- Данные для зависимых моделей -->
+<div id="appData"
+     data-models-by-brand="{{ models_by_brand_json|e }}"
+     data-all-models="{{ models_json|e }}"
+     data-saved-model="{{ saved_model_json|e }}"
+     hidden></div>
+
+<script>
+  const routes = document.getElementById("routes").dataset;
+  const INDEX_URL = routes.indexUrl;
+  const EXPORT_URL = routes.exportUrl;
+  const API_SEARCH_URL = routes.apiSearchUrl;
+
+  const dataEl = document.getElementById("appData");
+  const modelsByBrand = JSON.parse(dataEl.dataset.modelsByBrand);
+  const allModels = JSON.parse(dataEl.dataset.allModels);
+  const savedModel = JSON.parse(dataEl.dataset.savedModel);
+
+  const form = document.getElementById("filterForm");
+  const brandSelect = document.getElementById("brandSelect");
+  const modelSelect = document.getElementById("modelSelect");
+  const resetBtn = document.getElementById("resetBtn");
+  const exportLink = document.getElementById("exportLink");
+
+  function fillModels(models, selectedValue) {
+    modelSelect.innerHTML = `<option value="">Любая</option>`;
+    models.forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      if (selectedValue && selectedValue === m) opt.selected = true;
+      modelSelect.appendChild(opt);
+    });
+  }
+
+  function initModels() {
+    const brand = brandSelect.value;
+    if (!brand) {
+      fillModels(allModels, savedModel);
+      return;
+    }
+    const models = modelsByBrand[brand] || [];
+    fillModels(models, models.includes(savedModel) ? savedModel : "");
+  }
+
+  initModels();
+
+  brandSelect.addEventListener("change", () => {
+    const models = modelsByBrand[brandSelect.value] || [];
+    fillModels(models, "");
+  });
+
+  // Экспорт по текущим фильтрам (из URL)
+  exportLink.href = EXPORT_URL + window.location.search;
+
+  // Реальный сброс: очистка полей + переход на чистый "/"
+  resetBtn.addEventListener("click", () => {
+    form.querySelectorAll("input").forEach(inp => inp.value = "");
+    form.querySelectorAll("select").forEach(sel => sel.value = "");
+    fillModels(allModels, "");
+    window.location.href = INDEX_URL;
+  });
+
+  // ---- Живые подсказки поиска ----
+  const searchInput = document.getElementById("searchInput");
+  const searchField = document.getElementById("searchField");
+  const searchSuggest = document.getElementById("searchSuggest");
+  const suggestList = document.getElementById("suggestList");
+  const suggestClose = document.getElementById("suggestClose");
+
+  let searchTimer = null;
+  let lastQuery = "";
+
+  function hideSuggest() {
+    searchSuggest.hidden = true;
+    suggestList.innerHTML = "";
+  }
+
+  function showSuggest() {
+    searchSuggest.hidden = false;
+  }
+
+  // Чтобы Enter не “переводил” на новую страницу во время набора
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") e.preventDefault();
+    if (e.key === "Escape") hideSuggest();
+  });
+
+  suggestClose.addEventListener("click", hideSuggest);
+
+  document.addEventListener("click", (e) => {
+    if (!searchField.contains(e.target)) hideSuggest();
+  });
+
+  async function fetchSuggest(q) {
+    const brand = brandSelect.value || "";
+    const url = `${API_SEARCH_URL}?q=${encodeURIComponent(q)}&brand=${encodeURIComponent(brand)}&limit=8`;
+    const res = await fetch(url, { headers: { "Accept": "application/json" } });
+    if (!res.ok) return [];
+    return await res.json();
+  }
+
+  function renderSuggest(items) {
+    if (!items || items.length === 0) {
+      suggestList.innerHTML = `<div class="suggest__empty">Ничего не найдено</div>`;
+      showSuggest();
+      return;
+    }
+
+    suggestList.innerHTML = items.map(x => `
+      <a class="suggest__item" href="${INDEX_URL}?brand=${encodeURIComponent(x.brand)}&model=${encodeURIComponent(x.model)}">
+        <div class="suggest__main">
+          <div class="suggest__title">${x.brand} ${x.model}</div>
+          <div class="suggest__meta">${x.year} • ${x.body_type}</div>
+        </div>
+        <div class="suggest__price">${x.price_usd} $</div>
+      </a>
+    `).join("");
+
+    showSuggest();
+  }
+
+  searchInput.addEventListener("input", () => {
+    const q = (searchInput.value || "").trim();
+
+    if (q.length < 2) {
+      hideSuggest();
+      lastQuery = q;
+      return;
+    }
+
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(async () => {
+      try {
+        lastQuery = q;
+        suggestList.innerHTML = `<div class="suggest__loading">Поиск...</div>`;
+        showSuggest();
+
+        const items = await fetchSuggest(q);
+        if (lastQuery !== q) return;
+
+        renderSuggest(items);
+      } catch (err) {
+        suggestList.innerHTML = `<div class="suggest__empty">Ошибка поиска</div>`;
+        showSuggest();
+      }
+    }, 250);
+  });
+</script>
+
+{% endblock %}

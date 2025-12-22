@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="card">
+  <div class="card__header card__header--row">
+    <div>
+      <h2 class="card__title">Избранное</h2>
+      <p class="card__subtitle">Сохранённые автомобили (в сессии Flask)</p>
+    </div>
+    <a class="btn btn-ghost" href="{{ url_for('index') }}">← На главную</a>
+  </div>
+
+  {% if cars %}
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Марка</th><th>Модель</th><th>Год</th><th>Кузов</th>
+          <th>Мощность</th><th>Топливо</th><th>Привод</th><th>КПП</th><th>Цена, $</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for car in cars %}
+        <tr class="row-anim">
+          <td><span class="pill">{{ car.brand }}</span></td>
+          <td>{{ car.model }}</td>
+          <td>{{ car.year }}</td>
+          <td>{{ car.body_type }}</td>
+          <td>{{ car.horsepower }}</td>
+          <td>{{ car.fuel_type }}</td>
+          <td>{{ car.drive_type }}</td>
+          <td>{{ car.transmission }}</td>
+          <td><b>{{ car.price_usd }}</b></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty">
+    <div class="empty__icon">⭐</div>
+    <div class="empty__title">Пока пусто</div>
+    <div class="empty__text">Добавляй авто на главной странице кнопкой “★”.</div>
+    <a class="btn btn-primary" href="{{ url_for('index') }}">Перейти к поиску</a>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}

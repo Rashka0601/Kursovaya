@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="card card--glass">
+  <div class="card__header card__header--row">
+    <div>
+      <h2 class="card__title">Рекомендации</h2>
+      <p class="card__subtitle">По выбранному автомобилю</p>
+    </div>
+    <a class="btn btn-ghost" href="{{ url_for('index') }}">← На главную</a>
+  </div>
+
+  <div class="highlight">
+    <div class="highlight__main">
+      <div class="highlight__title">{{ car.brand }} {{ car.model }} ({{ car.year }})</div>
+      <div class="highlight__meta">
+        <span class="chip chip--soft">{{ car.body_type }}</span>
+        <span class="chip chip--soft">{{ car.fuel_type }}</span>
+        <span class="chip chip--soft">{{ car.drive_type }}</span>
+        <span class="chip chip--soft">{{ car.transmission }}</span>
+        <span class="chip chip--soft">{{ car.horsepower }} л.с.</span>
+      </div>
+    </div>
+    <div class="highlight__price">
+      <div class="muted">Цена</div>
+      <div class="price">{{ car.price_usd }} $</div>
+      <a class="btn btn-sm btn-outline" href="{{ url_for('add_favorite', car_id=car.id) }}">★ В избранное</a>
+    </div>
+  </div>
+</section>
+
+<section class="grid-2">
+  <div class="card">
+    <div class="card__header">
+      <h3 class="card__title">Похожие автомобили</h3>
+      <p class="card__subtitle">Правило: марка + кузов, год ±1, мощность ±20%</p>
+    </div>
+
+    {% if similar_cars %}
+    <div class="table-wrap">
+      <table class="table table--compact">
+        <thead>
+          <tr><th>Марка</th><th>Модель</th><th>Год</th><th>Мощность</th><th>Цена</th></tr>
+        </thead>
+        <tbody>
+          {% for c in similar_cars %}
+          <tr class="row-anim">
+            <td><span class="pill">{{ c.brand }}</span></td>
+            <td>{{ c.model }}</td>
+            <td>{{ c.year }}</td>
+            <td>{{ c.horsepower }}</td>
+            <td><b>{{ c.price_usd }}</b></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty empty--small">
+      <div class="empty__icon">🧩</div>
+      <div class="empty__title">Нет похожих</div>
+      <div class="empty__text">Попробуй выбрать другой автомобиль.</div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <div class="card__header">
+      <h3 class="card__title">В этом же ценовом диапазоне</h3>
+      <p class="card__subtitle">Правило: цена ±10%</p>
+    </div>
+
+    {% if price_range_cars %}
+    <div class="table-wrap">
+      <table class="table table--compact">
+        <thead>
+          <tr><th>Марка</th><th>Модель</th><th>Год</th><th>Мощность</th><th>Цена</th></tr>
+        </thead>
+        <tbody>
+          {% for c in price_range_cars %}
+          <tr class="row-anim">
+            <td><span class="pill">{{ c.brand }}</span></td>
+            <td>{{ c.model }}</td>
+            <td>{{ c.year }}</td>
+            <td>{{ c.horsepower }}</td>
+            <td><b>{{ c.price_usd }}</b></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty empty--small">
+      <div class="empty__icon">💸</div>
+      <div class="empty__title">Нет вариантов</div>
+      <div class="empty__text">В датасете нет авто в этом диапазоне.</div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
